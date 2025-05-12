@@ -1,2 +1,4 @@
 jupyterlab
 ipykernel
+polars
+pyarrow

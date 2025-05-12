@@ -5,6 +5,8 @@
   // install requirements into an in‑container virtualenv
   "postCreateCommand": "python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt",
 
+  "postStartCommand": "echo '. .venv/bin/activate' >> ~/.bashrc",
+
   // optional: VS Code extensions pre‑installed *inside* the container
   "customizations": {
     "vscode": {
