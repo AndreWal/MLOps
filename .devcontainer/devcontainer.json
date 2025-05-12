@@ -1,0 +1,20 @@
+{
+  "name": "Python (latest 3.12)",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+
+  // install requirements into an in‑container virtualenv
+  "postCreateCommand": "python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt",
+
+  // optional: VS Code extensions pre‑installed *inside* the container
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  },
+
+  // expose the default Jupyter port if you run notebooks
+  "forwardPorts": [8888]
+}
