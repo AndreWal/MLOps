@@ -1,4 +1,11 @@
 jupyterlab
 ipykernel
+
 polars
 pyarrow
+
+sklearn
+numpy
+
+matplotlib
+seaborn
