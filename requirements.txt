@@ -3,6 +3,7 @@ ipykernel
 
 polars
 pyarrow
+pickle
 
 scikit-learn
 xgboost
