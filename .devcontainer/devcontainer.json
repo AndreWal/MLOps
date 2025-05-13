@@ -5,15 +5,12 @@
   // install requirements into an in‑container virtualenv
   "postCreateCommand": "python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt",
 
-  "postStartCommand": "source .venv/bin/activate && (pgrep -f 'mlflow ui' || nohup .venv/bin/mlflow ui --host 0.0.0.0 --port 8080 --backend-store-uri sqlite:///mlflow.db >/tmp/mlflow.log 2>&1 &) && grep -qxF 'source .venv/bin/activate' ~/.bashrc || echo 'source .venv/bin/activate' >> ~/.bashrc",
+  "postStartCommand": ". .venv/bin/activate && (pgrep -f 'mlflow ui' || nohup .venv/bin/mlflow ui --host 0.0.0.0 --port 8080 --backend-store-uri sqlite:///mlflow.db >/tmp/mlflow.log 2>&1 &) && (grep -qxF '. .venv/bin/activate' ~/.bashrc || echo '. .venv/bin/activate' >> ~/.bashrc)",
 
-  // 3️⃣  Optional Dev Container features
   "features": {
-    "ghcr.io/devcontainers/features/git-lfs:1": {},
-    "ghcr.io/devcontainers/features/pipx:1": {}
+    "ghcr.io/devcontainers/features/git-lfs:1": {}
   },
 
-  // 4️⃣  VS Code customisation inside the container
   "customizations": {
     "vscode": {
       "settings": {
