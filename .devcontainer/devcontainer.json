@@ -5,7 +5,8 @@
   // install requirements into an in‑container virtualenv
   "postCreateCommand": "python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt",
 
-  "postStartCommand": "echo '. .venv/bin/activate' >> ~/.bashrc",
+  "postStartCommand": ". /workspaces/.venv/bin/activate && if ! pgrep -f 'mlflow ui' >/dev/null; then nohup mlflow ui --host 0.0.0.0 --port 8080 --backend-store-uri sqlite:///mlflow.db >/tmp/mlflow.log 2>&1 & fi && grep -qxF 'source /workspaces/.venv/bin/activate' ~/.bashrc || echo 'source /workspaces/.venv/bin/activate' >> ~/.bashrc",
+
 
   // optional: VS Code extensions pre‑installed *inside* the container
   "customizations": {
@@ -17,6 +18,20 @@
     }
   },
 
-  // expose the default Jupyter port if you run notebooks
-  "forwardPorts": [8888]
+  "forwardPorts": [8888, 8080],
+  "portsAttributes": {
+    "8888": {
+      "label": "Jupyter",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "MLflow UI",
+      "onAutoForward": "notify"
+    }
+  },
+
+  // 6. Default environment variables inside the container
+  "remoteEnv": {
+    "MLFLOW_TRACKING_URI": "sqlite:///mlflow.db"
+  }
 }
