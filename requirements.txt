@@ -6,6 +6,8 @@ pyarrow
 
 scikit-learn
 xgboost
+catboost
+lightgbm
 hyperopt
 mlflow
 numpy
