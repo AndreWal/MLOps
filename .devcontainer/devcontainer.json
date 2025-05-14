@@ -22,13 +22,13 @@
   },
 
   // Forward Jupyter and MLflow ports
-  "forwardPorts": [8888, 8080],
+  "forwardPorts": [8888, 5000],
   "portsAttributes": {
     "8888": {
       "label": "Jupyter",
       "onAutoForward": "notify"
     },
-    "8080": {
+    "5000": {
       "label": "MLflow UI",
       "onAutoForward": "notify"
     }
